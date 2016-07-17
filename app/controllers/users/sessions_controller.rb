@@ -7,14 +7,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    current_user.activities << Activity.new(action_type: :sign_in)
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    current_user.activities << Activity.new(action_type: :manually_sign_out)
+    super
+  end
 
   # protected
 
