@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :transactions
+  resources :transactions
+  resources :categories
   resources :activities, only: [:index]
   resources :accounts
   devise_for :users, controllers: {

@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :session_limitable
 
   has_many :activities
+  has_many :categories
+  has_many :accounts
 
 end
