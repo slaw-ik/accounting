@@ -47,3 +47,7 @@ end
 
 gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'devise_security_extension', '~> 0.10.0'
+
+gem 'bootstrap-sass', '~> 3.3.6'
+
+gem 'will_paginate'
