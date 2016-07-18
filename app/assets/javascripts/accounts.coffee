@@ -3,8 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#jsGrid').jsGrid
-    height: '80%'
+  source_url = $('#accountsGrid').data('source')
+
+  $('#accountsGrid').jsGrid
+#    height: '80%'
     width: '100%'
     filtering: true
     inserting: true
@@ -19,30 +21,35 @@ $ ->
       loadData: (filter) ->
         $.ajax(
           type: 'GET'
-          url: $('#jsGrid').data('load')
+          url: source_url
           data: filter
           dataType: 'json'
         )
-#      insertItem: (item) ->
-#        $.ajax
-#          type: 'POST'
-#          url: '/clients'
-#          data: item
-#      updateItem: (item) ->
-#        $.ajax
-#          type: 'PUT'
-#          url: '/clients/' + item.id
-#          data: item
-#      deleteItem: (item) ->
-#        $.ajax
-#          type: 'DELETE'
-#          url: '/clients/' + item.id
+      insertItem: (item) ->
+        $.ajax
+          type: 'POST'
+          url: source_url
+          data: item
+          dataType: 'json'
+      updateItem: (item) ->
+        $.ajax
+          type: 'PUT'
+          url: "#{source_url}/#{item.id}"
+          data: item
+          dataType: 'json'
+      deleteItem: (item) ->
+        $.ajax
+          type: 'DELETE'
+          url: "#{source_url}/#{item.id}"
+          dataType: 'json'
+    rowClick: (event, data) ->
+      window.location.href = "#{source_url}/#{event.item.id}/transactions"
     fields: [
       {
         name: 'name'
         type: 'text'
         width: 150
-        filtering: false
+        filtering: true
       }
       {
         name: 'critical_sum'
@@ -56,6 +63,14 @@ $ ->
         title: 'Notify'
         filtering: false
         sorting: false
+      }
+      {
+        name: 'created_at'
+        type: 'text'
+        title: 'Created'
+        filtering: false
+        sorting: false
+        editing: false
       }
       {type: 'control'}
     ]

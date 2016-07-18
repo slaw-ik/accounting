@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :transactions
-  resources :transactions
   resources :categories
   resources :activities, only: [:index]
-  resources :accounts
+  resources :accounts do
+    resources :transactions
+  end
   devise_for :users, controllers: {
       sessions: 'users/sessions'
   }
