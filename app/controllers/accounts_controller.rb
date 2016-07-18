@@ -4,7 +4,10 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    respond_to do |format|
+      format.html
+      format.json { render json: Account.all }
+    end
   end
 
   # GET /accounts/1

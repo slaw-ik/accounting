@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= yield :head %>
 </head>
 <body>
 
@@ -15,6 +16,8 @@
   <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
   <%= yield %>
 </div>
+
+<%= yield :scripts %>
 
 </body>
 </html>
