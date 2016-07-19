@@ -1,4 +1,4 @@
 json.array!(@activities) do |activity|
-  json.extract! activity, :id, :action_type, :user_id
-  json.url activity_url(activity, format: :json)
+  json.extract! activity, :id, :action_type
+  json.created_at I18n.l(activity.created_at, :format => :short)
 end

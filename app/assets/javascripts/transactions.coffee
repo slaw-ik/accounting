@@ -2,15 +2,10 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 $ ->
   source_url = $('#transactionsGrid').data('source')
 
   $('#transactionsGrid').jsGrid
-#    height: '80%'
     width: '100%'
     filtering: true
     inserting: true
@@ -20,7 +15,7 @@ $ ->
     autoload: true
     pageSize: 10
     pageButtonCount: 5
-    deleteConfirm: 'Do you really want to delete client?'
+    deleteConfirm: 'Do you really want to delete transaction?'
     controller:
       loadData: (filter) ->
         $.ajax(

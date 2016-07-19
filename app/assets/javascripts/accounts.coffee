@@ -6,7 +6,6 @@ $ ->
   source_url = $('#accountsGrid').data('source')
 
   $('#accountsGrid').jsGrid
-#    height: '80%'
     width: '100%'
     filtering: true
     inserting: true
@@ -16,7 +15,7 @@ $ ->
     autoload: true
     pageSize: 10
     pageButtonCount: 5
-    deleteConfirm: 'Do you really want to delete client?'
+    deleteConfirm: 'Do you really want to delete account?'
     controller:
       loadData: (filter) ->
         $.ajax(
