@@ -20,4 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  sign_in: Sign in
+  manually_sign_out: Manually sign out
+  automatically_sign_out: Automatically sign out
+  session_expired: Session expired

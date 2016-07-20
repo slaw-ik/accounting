@@ -46,12 +46,14 @@ $ ->
     fields: [
       {
         name: 'name'
+        title: 'Account name'
         type: 'text'
         width: 150
         filtering: true
       }
       {
         name: 'critical_sum'
+        title: 'Critical sum'
         type: 'number'
         width: 50
         filtering: false

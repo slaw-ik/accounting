@@ -4,8 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :session_limitable
 
-  has_many :activities
-  has_many :categories
-  has_many :accounts
+  has_many :activities, dependent: :destroy
+  has_many :categories, dependent: :destroy
+  has_many :accounts, dependent: :destroy
+
+  after_create :populate_categories
+
+  private
+
+  def populate_categories
+    Category.populate_for_user(self)
+  end
 
 end

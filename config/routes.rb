@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :categories
-  resources :activities, only: [:index]
+  resources :activities, only: [:index] do
+    get 'types', on: :collection
+  end
   resources :accounts do
     resources :transactions
   end

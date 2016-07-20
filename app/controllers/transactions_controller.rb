@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = @account.transactions.where('name LIKE ?', "%#{params[:name]}%")
+    @transactions = @account.transactions.filter_conditions(params[:name], params[:category_id])
   end
 
   # POST /transactions.json

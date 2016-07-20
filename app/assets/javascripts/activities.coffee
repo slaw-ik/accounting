@@ -4,6 +4,18 @@
 
 $ ->
   source_url = $('#activitiesGrid').data('source')
+  getActionTypes = () ->
+    $.merge(
+      [{name: '- All Actions -', id: -1}],
+      $.ajax(
+        type: 'GET'
+        url: '/activities/types'
+        dataType: 'json'
+        async: false
+        success: (data) ->
+          data
+      ).responseJSON
+    )
 
   $('#activitiesGrid').jsGrid
     width: '100%'
@@ -28,15 +40,18 @@ $ ->
     fields: [
       {
         name: 'action_type'
-        type: 'text'
+        type: 'select'
+        title: 'Action'
         width: 150
-        filtering: true
+        items: getActionTypes()
+        valueField: 'id'
+        textField: 'name'
       }
       {
         name: 'created_at'
         type: 'text'
         title: 'Created'
-        filtering: true
+        filtering: false
       }
       {
         type: 'control'

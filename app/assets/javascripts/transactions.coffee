@@ -4,6 +4,18 @@
 
 $ ->
   source_url = $('#transactionsGrid').data('source')
+  getCategories = () ->
+    $.merge(
+      [{name: '- All Categories -', id: 0}],
+      $.ajax(
+        type: 'GET'
+        url: '/categories'
+        dataType: 'json'
+        async: false
+        success: (data) ->
+          data
+      ).responseJSON
+    )
 
   $('#transactionsGrid').jsGrid
     width: '100%'
@@ -46,15 +58,30 @@ $ ->
     fields: [
       {
         name: 'name'
+        title: 'Transaction name'
         type: 'text'
         width: 150
         filtering: true
+        validate: "required"
+      }
+      {
+        name: 'category_id'
+        type: 'select'
+        title: 'Category'
+        items: getCategories()
+        valueField: 'id'
+        textField: 'name'
+        validate: (value, item) ->
+          value > 0
       }
       {
         name: 'sum'
+        title: 'Sum'
         type: 'number'
         width: 50
         filtering: false
+        validate: (value, item) ->
+          value != 0
       }
       {
         name: 'created_at'
