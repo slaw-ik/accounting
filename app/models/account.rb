@@ -13,7 +13,7 @@ class Account < ActiveRecord::Base
     if notify?
       t = Thread.new do
         if summ<= critical_sum
-          AlertMailer.critical_count(user, self, count).deliver
+          AlertMailer.critical_count(user, self, summ).deliver
         end
       end
       at_exit { t.join }
