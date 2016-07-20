@@ -49,7 +49,7 @@ $ ->
         type: 'text'
         title: 'Category'
         width: 150
-        filtering: true
+        validate: "required"
       }
       {type: 'control'}
     ]

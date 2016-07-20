@@ -55,6 +55,11 @@ $ ->
           dataType: 'json'
     rowClick: (event, data) ->
       false
+    rowClass: (item) ->
+      if item.sum > 0
+        'positive'
+      else
+        'negative'
     fields: [
       {
         name: 'name'
@@ -76,8 +81,9 @@ $ ->
       }
       {
         name: 'sum'
-        title: 'Sum'
+        title: 'Transaction summ'
         type: 'number'
+        css: 'sum'
         width: 50
         filtering: false
         validate: (value, item) ->

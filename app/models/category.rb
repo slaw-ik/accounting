@@ -3,8 +3,9 @@ class Category < ActiveRecord::Base
 
   DEFAULT_CATEGORIES = %w(Salary Food Transfer Health Utilities)
 
-  scope :filter_conditions, -> (name) { where('name LIKE ?', "%#{name}%") }
+  validates :name, presence: true
 
+  scope :filter_conditions, -> (name) { where('name LIKE ?', "%#{name}%") }
 
   def self.populate_for_user(user)
     if user.is_a? User

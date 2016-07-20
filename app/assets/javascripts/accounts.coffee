@@ -43,6 +43,8 @@ $ ->
           dataType: 'json'
     rowClick: (event, data) ->
       window.location.href = "#{source_url}/#{event.item.id}/transactions"
+    rowClass: (item) ->
+      'red' if item.critical
     fields: [
       {
         name: 'name'
@@ -50,12 +52,15 @@ $ ->
         type: 'text'
         width: 150
         filtering: true
+        validate: "required"
       }
       {
         name: 'critical_sum'
         title: 'Critical sum'
-        type: 'number'
+        type: 'text'
         width: 50
+        validate: (value, item) ->
+          value != 0 && !isNaN(parseFloat(value))
         filtering: false
       }
       {
@@ -66,13 +71,12 @@ $ ->
         sorting: false
       }
       {
-        name: 'created_at'
-        type: 'date'
-        title: 'Created'
+        name: 'summ'
+        type: 'text'
+        title: 'Balance'
         filtering: false
-        sorting: false
         editing: false
-        myCustomProperty: 'created_at'
+        inserting: false
       }
       {type: 'control'}
     ]
