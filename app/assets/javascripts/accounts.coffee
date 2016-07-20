@@ -67,11 +67,12 @@ $ ->
       }
       {
         name: 'created_at'
-        type: 'text'
+        type: 'date'
         title: 'Created'
         filtering: false
         sorting: false
         editing: false
+        myCustomProperty: 'created_at'
       }
       {type: 'control'}
     ]
